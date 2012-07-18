@@ -1,0 +1,4 @@
+CREATE TABLE TestEntity (
+  id BIGINT(20) NOT NULL,
+  PRIMARY KEY(id)
+);
