@@ -15,42 +15,10 @@
   resources, i.e. build is platform dependent! -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <jboss.bom.version>1.0.0.Final</jboss.bom.version>
-        <solder.version>3.1.1.Final</solder.version>
-        <codi.version>1.0.5</codi.version>
     </properties>
 
 
     <dependencies>
-        <!-- Import the CDI API, we use provided scope as the API is included
-    in JBoss AS 7 -->
-        <dependency>
-            <groupId>javax.enterprise</groupId>
-            <artifactId>cdi-api</artifactId>
-            <scope>provided</scope>
-        </dependency>
-
-        <!-- Import the Common Annotations API (JSR-250), we use provided scope
-as the API is included in JBoss AS 7 -->
-        <dependency>
-            <groupId>org.jboss.spec.javax.annotation</groupId>
-            <artifactId>jboss-annotations-api_1.1_spec</artifactId>
-            <scope>provided</scope>
-        </dependency>
-
-        <!-- Import the JSF API, we use provided scope as the API is included
-    in JBoss AS 7 -->
-        <dependency>
-            <groupId>org.jboss.spec.javax.faces</groupId>
-            <artifactId>jboss-jsf-api_2.1_spec</artifactId>
-            <scope>provided</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.jboss.spec.javax.servlet</groupId>
-            <artifactId>jboss-servlet-api_3.0_spec</artifactId>
-            <version>1.0.0.Final</version>
-            <scope>provided</scope>
-        </dependency>
 
         <!-- Import the JPA API, we use provided scope as the API is included
     in JBoss AS 7 -->
@@ -87,6 +55,7 @@ as the API is included in JBoss AS 7 -->
             <!--<artifactId>h2</artifactId>-->
             <!--<version>1.3.167</version>-->
         <!--</dependency>-->
+
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
