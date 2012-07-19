@@ -15,12 +15,13 @@ import javax.persistence.PersistenceContext;
 @Singleton
 public class StartupBean {
 
-    @PersistenceContext
+    @PersistenceContext(unitName = "")
     EntityManager manager;
 
     @PostConstruct
     public void init()
     {
+        System.out.println("BLUB!");
         manager.persist(new TestEntity());
     }
 

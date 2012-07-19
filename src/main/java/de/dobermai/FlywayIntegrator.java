@@ -2,12 +2,14 @@ package de.dobermai;
 
 import com.googlecode.flyway.core.Flyway;
 import com.googlecode.flyway.core.util.jdbc.DriverDataSource;
-import org.h2.Driver;
+import com.mysql.jdbc.Driver;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.engine.spi.SessionFactoryImplementor;
 import org.hibernate.integrator.spi.Integrator;
 import org.hibernate.metamodel.source.MetadataImplementor;
 import org.hibernate.service.spi.SessionFactoryServiceRegistry;
+
+import java.sql.SQLException;
 
 /**
  * @author dobermai
@@ -17,7 +19,11 @@ public class FlywayIntegrator implements Integrator {
     public void integrate(final Configuration configuration, final SessionFactoryImplementor sessionFactoryImplementor, final SessionFactoryServiceRegistry sessionFactoryServiceRegistry) {
         System.out.println("I do it!");
         final Flyway flyway = new Flyway();
-        flyway.setDataSource(new DriverDataSource(new Driver(), "jdbc:h2:mem:flywayresource;DB_CLOSE_ON_EXIT=FALSE", "sa", "sa"));
+        try {
+            flyway.setDataSource(new DriverDataSource(new Driver(), "jdbc:mysql://localhost:8889/testdb", "root", "root"));
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
         flyway.migrate();
         System.out.println("Im done!");
     }
