@@ -1,4 +1,1 @@
-CREATE TABLE `TestEntity` (
-  `id` BIGINT(11) unsigned NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`id`)
-);
+ALTER TABLE `TestEntity` ADD `description` VARCHAR(60) AFTER `id`;
