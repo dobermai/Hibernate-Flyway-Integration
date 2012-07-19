@@ -10,31 +10,38 @@ import org.hibernate.metamodel.source.MetadataImplementor;
 import org.hibernate.service.spi.SessionFactoryServiceRegistry;
 
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author dobermai
  */
 public class FlywayIntegrator implements Integrator {
+
+    public static final Logger logger = Logger.getLogger("FlywayIntegrator");
+
     @Override
     public void integrate(final Configuration configuration, final SessionFactoryImplementor sessionFactoryImplementor, final SessionFactoryServiceRegistry sessionFactoryServiceRegistry) {
-        System.out.println("I do it!");
+
+        logger.log(Level.INFO, "Starting Flyway Migration");
+
         final Flyway flyway = new Flyway();
         try {
             flyway.setDataSource(new DriverDataSource(new Driver(), "jdbc:mysql://localhost:8889/testdb", "root", "root"));
+            flyway.migrate();
         } catch (SQLException e) {
-            System.out.println(e);
+            logger.log(Level.SEVERE, "Error while migrating:", e);
         }
-        flyway.migrate();
-        System.out.println("Im done!");
+        logger.log(Level.INFO, "Finished Flyway Migration");
     }
 
     @Override
     public void integrate(final MetadataImplementor metadataImplementor, final SessionFactoryImplementor sessionFactoryImplementor, final SessionFactoryServiceRegistry sessionFactoryServiceRegistry) {
-        //To change body of implemented methods use File | Settings | File Templates.
+        //no-op
     }
 
     @Override
     public void disintegrate(final SessionFactoryImplementor sessionFactoryImplementor, final SessionFactoryServiceRegistry sessionFactoryServiceRegistry) {
-        //To change body of implemented methods use File | Settings | File Templates.
+        //no-op
     }
 }

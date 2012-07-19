@@ -7,6 +7,7 @@ import javax.ejb.Singleton;
 import javax.ejb.Startup;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.logging.Logger;
 
 /**
  * @author dobermai
@@ -15,13 +16,14 @@ import javax.persistence.PersistenceContext;
 @Singleton
 public class StartupBean {
 
-    @PersistenceContext(unitName = "")
+    private final static Logger logger = Logger.getLogger("StartupBean");
+
+    @PersistenceContext
     EntityManager manager;
 
     @PostConstruct
-    public void init()
-    {
-        System.out.println("BLUB!");
+    public void init() {
+        logger.info("Persisting new Test Entity");
         manager.persist(new TestEntity());
     }
 

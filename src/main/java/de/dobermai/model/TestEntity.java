@@ -7,7 +7,7 @@ import java.io.Serializable;
  * @author dobermai
  */
 @Entity
-public class TestEntity implements Serializable{
+public class TestEntity implements Serializable {
     private Long id;
 
     private String description;
